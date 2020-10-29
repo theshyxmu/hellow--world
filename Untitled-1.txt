@@ -1,0 +1,59 @@
+#include <Arduino.h>
+#define LED_1 9
+#define Key_1 7
+int key =0;
+void setup() 
+{
+  pinMode(LED_1 , OUTPUT);
+  pinMode(Key_1 , INPUT);
+}
+void thekey()
+{
+  if(digitalRead(Key_1)==HIGH)
+  {
+    int a=0;
+    delay(20);
+    if(digitalRead(Key_1)==HIGH)
+    {
+      a=1;
+      while(digitalRead(Key_1)==HIGH);
+    }
+    if(a==1)
+    {
+      if(key==1)
+      key=0;
+      else key=1;
+    }
+  }
+}
+void loop() 
+{
+  int shine=255;
+  thekey();
+  if(key==1)
+  {
+    if(shine=255)
+    {
+      for(shine=255;shine>0;shine--)
+      {analogWrite(LED_1,shine);
+      if(shine==255)
+      {
+        for(shine=0;shine<255;shine++)
+        {
+          analogWrite(LED_1,shine);
+          delay(10);
+          thekey();
+          if (key==0)
+          break;
+        }
+      }
+      delay(10);
+      thekey();
+      if (key==0)
+      break;
+     }
+    }
+  }
+  if(key==0)
+  analogWrite(LED_1,255);
+}
