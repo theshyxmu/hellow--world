@@ -55,5 +55,5 @@ void loop() 
     }
   }
   if(key==0)
-  analogWrite(LED_1,200);
+  analogWrite(LED_1,1000);
 }
